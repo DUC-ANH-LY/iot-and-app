@@ -1,0 +1,2 @@
+esp mail client 3.4.21 Mobizt
+https://randomnerdtutorials.com/esp32-send-email-smtp-server-arduino-ide/

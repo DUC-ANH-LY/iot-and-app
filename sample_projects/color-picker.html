@@ -1,0 +1,33 @@
+<label for="favcolor">Select your favorite color:</label>
+<input type="color" id="favcolor" value="#ff0000" />
+
+<script>
+  webSocketClient = new WebSocket("ws://localhost:3000");
+  webSocketClient.onopen = function (event) {
+    console.log("WebSocket is open now.");
+  };
+  webSocketClient.onclo = function (event) {
+    console.log("WebSocket is closed now.");
+  };
+    webSocketClient.onmessage = function (event) {
+        console.log("Message received from server: ", event.data);
+    };
+  function hexTorgb(hex) {
+    return [
+      ("0x" + hex[1] + hex[2]) | 0,
+      ("0x" + hex[3] + hex[4]) | 0,
+      ("0x" + hex[5] + hex[6]) | 0,
+    ];
+  }
+
+  document.getElementById("favcolor").onchange = function () {
+    console.log(hexTorgb(document.getElementById("favcolor").value));
+    webSocketClient.send(
+      JSON.stringify({
+        color: hexTorgb(document.getElementById("favcolor").value),
+      })
+    );
+    document.body.style.backgroundColor =
+      document.getElementById("favcolor").value;
+  };
+</script>

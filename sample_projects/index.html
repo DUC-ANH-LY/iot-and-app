@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title>IOT</title>
+   <!-- Favicon -->
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+   <link href="./assets/img/brand/favicon.png" rel="icon" type="image/png">
+   <!-- Fonts -->
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+   <!-- Icons -->
+   <link href="./assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+   <link href="./assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+   <!-- CSS Files -->
+   <link href="./assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
+   <link rel="stylesheet" href="style1.css">
+   <script src="https://code.highcharts.com/stock/highstock.js"></script>
+   <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" />
+</head>
+
+<body class="">
+   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white bg-light" id="sidenav-main">
+      <div class="container-fluid">
+         <a class="navbar-brand pt-0" href="./index.html">
+            <img src="./assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+         </a>
+         <!-- User -->
+         <ul class="nav align-items-center d-md-none">
+            <li class="nav-item dropdown">
+               <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                  <div class=" dropdown-header noti-title">
+                     <h6 class="text-overflow m-0">Welcome!</h6>
+                  </div>
+                  <a href="./profile.html" class="dropdown-item">
+                     <i class="ni ni-single-02"></i>
+                     <span>My profile</span>
+                  </a>
+               </div>
+            </li>
+         </ul>
+         <!-- Collapse -->
+         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+            <!-- Navigation -->
+            <ul class="navbar-nav" id="button">
+               <li class="nav-item  active ">
+                  <a class="nav-link  active " onclick="showPanel(0)">
+                     <i class="ni ni-tv-2 text-primary"></i> Dashboard
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link active" onclick="showPanel(1)">
+                     <i class="ni ni-single-02 text-primary"></i> User profile
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link active" onclick="showPanel(2)">
+                     <i class="ni ni-bell-55 text-primary"></i> DataSensor
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link active" onclick="showPanel(3)">
+                     <i class="ni ni-app text-yellow"></i> Log Activities
+                  </a>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </nav>
+   <div class="main-content">
+      <!-- Navbar -->
+      <!-- Dashboard -->
+      <div class="tabPanel">
+         <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+            <div class="container-fluid">
+               <!-- Brand -->
+               <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Dashboard</a>
+               <!-- Form -->
+               <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                  <div class="form-group mb-0">
+                     <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                           <!-- <span class="input-group-text"><i class="fas fa-search"></i></span> -->
+                        </div>
+                        <!-- <input class="form-control" placeholder="Search" type="text"> -->
+                     </div>
+                  </div>
+               </form>
+               <!-- User -->
+               <ul class="navbar-nav align-items-center d-none d-md-flex">
+                  <li class="nav-item dropdown">
+                     <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="media align-items-center">
+                           <!-- <span class="avatar avatar-sm rounded-circle">
+                                 <img alt="Image placeholder" src="./img/profile2.jpg">
+                                 </span> -->
+                           <div class="media-body ml-2 d-none d-lg-block">
+                              <span class="mb-0 text-sm  font-weight-bold">B21DCAT176</span>
+                           </div>
+                        </div>
+                     </a>
+                     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                        <div class=" dropdown-header noti-title">
+                           <h6 class="text-overflow m-0">Welcome!</h6>
+                        </div>
+                        <a href="./profile.html" class="dropdown-item">
+                           <i class="ni ni-single-02"></i>
+                           <span>My profile</span>
+                        </a>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+         <!-- End Navbar -->
+         <!-- Header -->
+         <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+            <div class="container-fluid">
+               <div class="header-body">
+                  <!-- Card stats -->
+                  <div class="row">
+                     <div class="col-xl-4 col-lg-6">
+                        <div class="card card-stats mb-4 mb-xl-0">
+                           <div class="card-body" id="x" style="background-color: #E55353;  ">
+                              <div class="row">
+                                 <div class="nhietdo" style="flex-direction: column;">
+                                    <h1>Nhiệt Độ</h1>
+                                    <h1 id="temp">-</h1>
+                                 </div>
+                                 <div class="col-auto">
+                                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                       <i class="fas fa-temperature-low"></i>
+                                    </div>
+                                 </div>
+                              </div>
+                              <p class="mt-3 mb-0 text-muted text-sm">
+                                 <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                                 <span class="text-nowrap">Since last month</span>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-xl-4 col-lg-6">
+                        <div class="card card-stats mb-4 mb-xl-0">
+                           <div class="card-body" id="x1" style="background-color: #3399FF; ">
+                              <div class="row">
+                                 <div class="doam" style=" flex-direction: column;">
+                                    <h1>Độ Ẩm</h1>
+                                    <h1 id="doam">-</h1>
+                                 </div>
+                                 <div class="col-auto">
+                                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                                       <i class="fas fa-burn" style="color: #e8e8e8;"></i>
+                                    </div>
+                                 </div>
+                              </div>
+                              <p class="mt-3 mb-0 text-muted text-sm">
+                                 <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                                 <span class="text-nowrap">Since last week</span>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-xl-4 col-lg-6">
+                        <div class="card card-stats mb-4 mb-xl-0">
+                           <div class="card-body" id="x2" style="background-color:#20755c; ">
+                              <div class="row">
+                                 <div class="anhsang" style="flex-direction: column;">
+                                    <h1>Ánh sáng</h1>
+                                    <h1 id="anhsang">-</h1>
+                                 </div>
+                                 <div class="col-auto">
+                                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                                       <i class="fas fa-light fa-sun"></i>
+                                    </div>
+                                 </div>
+                              </div>
+                              <p class="mt-3 mb-0 text-muted text-sm">
+                                 <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                                 <span class="text-nowrap">Since yesterday</span>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="container-fluid mt--7">
+            <div class="row">
+               <div class="col-xl-9 mb-5 mb-xl-0">
+                  <div class="card /*bg-gradient-default*/ shadow">
+                     <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                           <div class="dothi" id="dothi">
+                           </div>
+                           <div class="col">
+                              </li>
+                              <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
+                                 </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xl-15">
+                  <div class="card shadow">
+                     <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                           <div class="col">
+                              <h2 class="mb-0">
+                              </h2>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="card-body">
+                        <div class="btn__buttun">
+                           <h3> số lần bật quạt</h3>
+                           <h3 id="den1"></h3>
+                           <div class="btn__connect">
+                              <ul>
+                                 <div class="top-right"
+                                    style="display: flex; flex-direction: row-reverse; justify-content: space-around; width: 120%; ">
+                                    <img id="statusLed" src="images/fanoff-removebg-preview.png"
+                                       style="height: 180px; width: 163px;">
+                                    <img src="images/on-removebg-preview.png" id="imgButton" style="height: 80px">
+                                 </div>
+                              </ul>
+                              <h3> số lần bật đèn</h3>
+                              <h3 id="den2">-</h3>
+                              <ul>
+                                 <div class="bottom-right"
+                                    style="display: flex; flex-direction: row-reverse; justify-content: space-around; width: 120%; ">
+                                    <img id="statusLed1" src="images/lon-removebg-preview.png" style="height: 180px;">
+                                    <img src="images/on-removebg-preview.png" id="imgButton1" style="height: 80px">
+                                 </div>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Tab Giới Thiệu -->
+   <div class="tabPanel">
+      <div class="introduce_tab">
+
+         <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Lê Trung Thành</title>
+            <style>
+               h3 {
+                  display: inline-block;
+                  /* Hiển thị cùng một dòng */
+                  margin-right: 20px;
+                  /* Khoảng cách giữa hai thẻ h3 */
+               }
+            </style>
+            <link rel="stylesheet" href="main.css">
+         </head>
+
+         <body>
+            <div class="main">
+               <div class="introduce">
+                  <div class="avatar"></div>
+                  <div class="myself">
+                     <h1>I'm Lê Trung Thành</h1>
+                     <div>
+                        <h3>Student at PTIT</h3>
+                     </div>
+                     </h3>
+                     <div class="div1">
+                        <h3 style="color: blue;">Name:</h3>
+                        <h3 style="margin-right: 100px;">Lê Trung Thành</h3>
+                     </div>
+                     <div class="div2">
+                        <h3 style="color: blue;">Date of Birth:</h3>
+                        <h3 style="margin-right: 100px;">21/06/2003</h3>
+                     </div>
+                     <div class="div3">
+                        <h3 style="color: blue;">Adress:</h3>
+                        <h3 style="margin-right: 100px;">Hà Nội</h3>
+                     </div>
+                     <div class="div4">
+                        <h3 style="color: blue;">Target:</h3>
+                        <h3 style="margin-right: 100px;">AI tools</h3>
+                     </div>
+                  </div>
+                  <div class="social">
+                     <div class="right_social" style="width: 1630px;">
+                        <div class="words" style="margin-left:400px;">
+                           <h1>
+                              About my selft
+                           </h1>
+                        </div>
+                        <div class="about_my_self">
+                           I'm an avid learner who likes to watch movies, travel and read book.I am in my 4th year at
+                           PTIT
+                           majoring in IT.
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </body>
+      </div>
+   </div>
+   <!-- Tab Hiển Thị Lịch Sử Cảm Biến -->
+   <div class="tabPanel">
+      <div class="sensor_tab">
+         <div style="display: block; justify-content: center; text-align: center; font-size: 30px; font-weight: bold;">
+            Sensor History
+         </div>
+         <div>
+            <select name="search" id="searchSelect" style="margin-left: 500px; font-size: 20px;">
+               <option value="id">id</option>
+               <option value="sensor">Sensor</option>
+               <option value="humidity">Humidity</option>
+               <option value="temperature">Temperature</option>
+               <option value="light">Light</option>
+               <option value="time">Time</option>
+            </select>
+            <input id="inputSearch" type="text" placeholder="Tim kiem" style="margin-left: 10px; font-size: 20px;">
+         </div>
+      </div>
+      <script>
+         var tSearch = document.getElementById('searchSelect');
+         var inputSearch = document.getElementById('inputSearch');
+         inputSearch.addEventListener("keypress", () => {
+            if (event.key === 'Enter' || event.keyCode === 13) {
+               if (inputSearch.value != "") {
+                  clearTable();
+                  console.log(tSearch.value, inputSearch.value);
+                  fetch(`http://localhost:3000/sensor/type=${tSearch.value}&input=${inputSearch.value}`)
+                     .then(data => {
+                        return data.json();
+                     })
+                     .then(post => {
+                        post.forEach((e) => {
+                           console.log(e);
+                           const newRow = {
+                              id: e.id,
+                              sensor: e.device_id,
+                              humidity: e.humidity,
+                              temperature: e.temperature,
+                              light: e.light,
+                              time: e.time,
+                           };
+                           data.push(newRow);
+                           addRow();
+                        })
+                     });
+
+               }
+               else {
+                  clearTable();
+                  fetch(`http://localhost:3000/sensor`)
+                     .then(data => {
+                        return data.json();
+                     })
+                     .then(post => {
+                        // console.log(post);  // XỬ lý data table
+                        post.forEach((e) => {
+                           console.log(e);
+                           const newRow = {
+                              id: e.id,
+                              sensor: e.device_id,
+                              humidity: e.humidity,
+                              temperature: e.temperature,
+                              light: e.light,
+                              time: e.time,
+                           };
+                           data.push(newRow);
+                           addRow();
+                        })
+
+                     });
+               };
+               event.preventDefault();
+            }
+
+         });
+
+
+      </script>
+      <div class=" table_senor" style="width: 160vh; margin: 3px; margin-left: 300px; background: white;">
+         <div class="table-container">
+            <table id="data-table">
+               <thead>
+                  <tr>
+                     <th>ID</th>
+                     <th>Sensor</th>
+                     <th>Humi</th>
+                     <th>Temp</th>
+                     <th>Light</th>
+                     <th>Time</th>
+                  </tr>
+               </thead>
+               <tbody id="table-body">
+               </tbody>
+            </table>
+         </div>
+         <div style="font-size: 20px; margin-left: calc(100%/2 - 100px); ">
+            <button id="page-back" style="font-size: 20px;">Back</button>
+            <label for="page-selector" style="font-size: 20px;"></label>
+            <select id="page-selector" style="font-size: 20px;"> </select>
+            <button id="page-next" style="font-size: 20px;">Next</button>
+         </div>
+         <script></script>
+         <style>
+            table {
+               width: 1700px;
+            }
+
+            th,
+            td {
+               border: 1px solid black;
+               width: 100px;
+               font-size: 27px;
+               height: 30px;
+               text-align: center;
+            }
+
+            .table-container {
+               height: 900px;
+            }
+
+            .data-table {
+               font-size: 27px;
+            }
+         </style>
+      </div>
+   </div>
+   <!-- tab log Activities -->
+   <div class="tabPanel">
+      <div class="action_tab">
+         <!-- <div style="display: block; justify-content: center; text-align: center; font-size: 30px; font-weight: bold;">
+      Action History</div> -->
+         <div class=" table_action" style="width: 160vh; margin: 5px; margin-left: 310px;">
+            <table id="action_table" class="table table-striped"
+               style="padding: 2px; border-collapse: collapse; border: 2px solid black;">
+               <div>
+                  <thead>
+                     <tr>
+                        <th
+                           style="background-color: rgba(32, 32, 32, 0.434); color: #fff; text-align: center; border-right: 2px solid #fff ; ">
+                           ID
+                        </th>
+                        <th
+                           style="background-color: rgba(32, 32, 32, 0.434); color: #fff; text-align: center; border-right: 2px solid #fff ;">
+                           DeviceId
+                        </th>
+                        <th
+                           style="background-color: rgba(32, 32, 32, 0.434); color: #fff; text-align: center; border-right: 2px solid #fff ;">
+                           Action
+                        </th>
+                        <th style="background-color: rgba(32, 32, 32, 0.434); color: #fff; text-align: center; ">
+                           Time
+                        </th>
+                     </tr>
+                  </thead>
+               </div>
+               <tbody>
+               </tbody>
+            </table>
+            <!--   Core   -->
+            <script src="./assets/js/plugins/jquery/dist/jquery.min.js"></script>
+            <script src="./assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <!--   Optional JS   -->
+            <script src="./assets/js/plugins/chart.js/dist/Chart.min.js"></script>
+            <script src="./assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
+            <!--   Argon JS   -->
+            <script src="./assets/js/argon-dashboard.min.js?v=1.1.2"></script>
+            <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+            <script>
+               window.TrackJS &&
+                  TrackJS.install({
+                     token: "ee6fab19c5a04ac1a32a645abde4613a",
+                     application: "argon-dashboard-free"
+                  });
+            </script>
+            <!-- chuyen tab -->
+            <script>
+               var tabButtons = document.getElementById("button");
+               var tabPanels = document.querySelectorAll("  .tabPanel");
+               function showPanel(panelIndex) {
+                  tabPanels.forEach(function (node) {
+                     node.style.display = "none";
+                  });
+                  tabPanels[panelIndex].style.display = "block";
+                  if (panelIndex == 2) {
+                     fetch(`http://localhost:3000/sensor`)
+                        .then(data => {
+                           return data.json();
+                        })
+                        .then(post => {
+                           // console.log(post);  // XỬ lý data table
+                           post.forEach((e) => {
+                              console.log(e);
+                              const newRow = {
+                                 id: e.id,
+                                 sensor: e.device_id,
+                                 humidity: e.humidity,
+                                 temperature: e.temperature,
+                                 light: e.light,
+                                 time: e.time,
+                              };
+                              data.push(newRow);
+                              addRow();
+                           })
+
+
+
+
+                        });
+                  }
+               }
+               showPanel(0);
+            </script>
+            <script>
+               const colorTemp = ['#FFE6E6', '#FFCDCD', '#FFB3B3', '#FF9A9A', '#FF8080', '#FF6666', '#FF4D4D', '#FF3333', '#FF1A1A', '#FF0000'];
+               const colorHumi = ["#E3F2FD", "#BBDEFB", "#90CAF9", "#64B5F6", "#42A5F5", "#2196F3", "#1E88E5", "#1976D2", "#1565C0", "#0D47A1"];
+               const colorBright = ["#FFFDE7", "#FFF9C4", "#FFF59D", "#FFF176", "#FFEE58", "#FFEB3B", "#FDD835", "#FBC02D", "#F9A825", "#F57F17"];
+               webSocket = new WebSocket('ws://localhost:3000');
+               webSocket.onopen = () => console.log('WebSocket Connected');
+               webSocket.onclose = () => console.log('WebSocket Disconnected');
+               const actionTable = new DataTable("#action_table"
+                  , {
+                     scrollY: "77vh",
+                     scrollCollapse: false,
+                     // Thay đổi số lượng hiển thị
+                     lengthMenu: [20, 30, 50, 100],
+                     // Số lượng hiển thị trên  1 trang
+                     pageLenght: 20
+                  }
+               );
+               function addNewRowSensor(sensor_id, humi, temp, anhsang, time) {
+                  table.row
+                     .add([
+                        counters,
+                        humi,
+                        temp,
+                        anhsang,
+                        time,
+                     ])
+                     .draw(false);
+                  counters++;
+               }
+
+               const abc = Highcharts.chart('dothi', {
+                  chart: {
+                     type: 'areaspline',
+                     animation: Highcharts.svg, // don't animate in old IE
+                     marginRight: 10,
+                  },
+
+                  time: {
+                     useUTC: false
+                  },
+
+                  title: {
+                     text: 'Đồ Thị Nhiệt Độ - Độ Ẩm'
+                  },
+
+                  accessibility: {
+                     announceNewData: {
+                        enabled: true,
+                        minAnnounceInterval: 15000,
+                        announcementFormatter: function (allSeries, newSeries, newPoint) {
+                           if (newPoint) {
+                              return 'New point added. Value: ' + newPoint.y;
+                           }
+                           return false;
+                        }
+                     }
+                  },
+
+                  xAxis: {
+                     title: {
+                        text: "Thời Gian Thực"
+                     },
+                     type: 'datetime',
+                     tickPixelInterval: 0
+                  },
+
+                  yAxis: {
+                     title: {
+                        text: 'Giá Trị'
+                     },
+                     plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                     }]
+                  },
+
+                  tooltip: {
+                     headerFormat: '<b>{series.name}</b><br/>',
+                     pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}'
+                  },
+                  legend: {
+                     enabled: false
+                  },
+
+                  exporting: {
+                     enabled: false
+                  },
+
+                  series: [{
+                     name: 'Nhiệt Độ',
+                     data: (function () {
+                        // generate an array of random data
+                        const data = [];
+                        const time = (new Date()).getTime();
+
+                        for (let i = -4; i <= 0; i += 1) {
+                           data.push({
+                              x: time + i * 1000,
+                              y: Math.random() * 100
+                           });
+                        }
+                        return data;
+                     }())
+                  }, {
+                     name: 'Độ Ẩm',
+                     data: (function () {
+                        // generate an array of random data
+                        const data = [];
+                        const time = (new Date()).getTime();
+
+                        for (let i = -4; i <= 0; i += 1) {
+                           data.push({
+                              x: time + i * 1000,
+                              y: Math.random() * 100
+                           });
+                        }
+                        return data;
+                     }())
+                  }, {
+                     name: 'ánh sáng',
+                     data: (function () {
+                        // generate an array of random data
+                        const data = [];
+                        const time = (new Date()).getTime();
+
+                        for (let i = -4; i <= 0; i += 1) {
+                           data.push({
+                              x: time + i * 1000,
+                              y: Math.random() * 100
+                           });
+                        }
+                        return data;
+                     }())
+                  }],
+               });
+
+
+
+               let counters = 1;
+
+               function addDataSensor(chart, message) {
+                  const series1 = chart.series[0];
+                  const series2 = chart.series[1];
+                  const series3 = chart.series[2];
+                  const time = (new Date()); // current time
+                  const x = time.getTime();
+                  const y1 = parseInt(message[1]);
+                  const y2 = parseInt(message[2]);
+                  const y3 = parseInt(message[3]);
+                  // console.log(y1, y2, y3)
+                  series1.addPoint([x, y1], true, true);
+                  series2.addPoint([x, y2], true, true);
+                  series3.addPoint([x, y3], true, true);
+                  const latestData1 = series1.data[series1.data.length - 1].y;
+                  const latestData2 = series2.data[series2.data.length - 1].y;
+                  const latestData3 = series3.data[series3.data.length - 1].y;
+
+                  const temp = document.getElementById('temp');
+                  const doam = document.getElementById('doam');
+                  const anhsang = document.getElementById('anhsang');
+                  const xx = document.getElementById('x');
+                  const xx1 = document.getElementById('x1');
+                  const xx2 = document.getElementById('x2');
+                  temp.innerHTML = `${latestData1} độ`;
+                  doam.innerHTML = `${latestData2} %`;
+                  anhsang.innerHTML = `${latestData3} mg/m^3`;
+                  xx.style.background = colorTemp[parseInt(message[2] / 10)];
+                  xx1.style.background = colorHumi[parseInt(message[1] / 10)];
+                  xx2.style.background = colorBright[parseInt(message[3] / 100)];
+
+
+               }
+
+               //  Xử lý websocket
+               const fanIMG = document.getElementById("statusLed");
+               const ledIMG = document.getElementById("statusLed1");
+
+               webSocket.onmessage = (event) => {
+                  const message = event.data.split("|");
+                  if (message[0] === "DHT11") {
+                     addDataSensor(abc, message);
+                  }
+                  else {
+                     console.log(message);
+
+                     if (message[0] == 'fan') {
+                        if (message[1] == 'on') {
+                           console.log(message[1])
+                           fanIMG.src = "images/fanon-removebg-preview.png";
+                        }
+                        else {
+                           fanIMG.src = "images/fanoff-removebg-preview.png";
+                        }
+                     }
+                     if (message[0] == 'led') {
+                        if (message[1] == 'on') {
+                           ledIMG.src = "images/loff-removebg-preview.png";
+                        }
+                        else {
+                           ledIMG.src = "images/lon-removebg-preview.png";
+                        }
+                     }
+                  }
+               }
+               // so lan bat den
+
+
+
+
+
+
+
+
+
+               counter2 = 1
+               const imgButton = document.getElementById("imgButton");
+
+               imgButton.addEventListener('click', () => {
+                  const time = (new Date()).toLocaleTimeString();
+                  [month, day, year] = (new Date()).toLocaleDateString().split('/');
+                  counter2++;
+
+                  if (imgButton.src.endsWith("images/off-removebg-preview.png")) {
+
+                     imgButton.src = "images/on-removebg-preview.png";
+                     actionTable.row
+                        .add([
+                           counter2,
+                           "fan",
+                           "off",
+                           year + '-' + month + '-' + day + ' ' + time,
+                        ])
+                        .draw(false);
+                     webSocket.send("fan|off");
+                  } else {
+                     imgButton.src = "images/off-removebg-preview.png";
+                     actionTable.row
+                        .add([
+                           counter2,
+                           "fan",
+                           "on",
+                           year + '-' + month + '-' + day + ' ' + time,
+                        ])
+                        .draw(false);
+
+
+
+
+                     fetch(`http://localhost:3000/action1`)
+                        .then(response => {
+                           return response.text();
+                        })
+                        .then(count => {
+                           const parsedCount = parseInt(count);
+                           den1.innerHTML = `${parsedCount} lần`;
+
+                        });
+
+
+
+
+                     webSocket.send("fan|on");
+
+                  }
+               }
+
+
+
+               );
+
+               const imgButton1 = document.getElementById("imgButton1");
+
+               imgButton1.addEventListener('click', () => {
+                  const time = (new Date()).toLocaleTimeString();
+                  [month, day, year] = (new Date()).toLocaleDateString().split('/');
+                  counter2++;
+
+                  if (imgButton1.src.endsWith("images/off-removebg-preview.png")) {
+                     imgButton1.src = "images/on-removebg-preview.png";
+                     actionTable.row
+                        .add([
+                           counter2,
+                           "led",
+                           "off",
+                           year + '-' + month + '-' + day + ' ' + time,
+                        ])
+                        .draw(false);
+                     webSocket.send("led|off");
+                  } else {
+                     imgButton1.src = "images/off-removebg-preview.png";
+                     actionTable.row
+                        .add([
+                           counter2,
+                           "led",
+                           "on",
+                           year + '-' + month + '-' + day + ' ' + time,
+                        ])
+                        .draw(false);
+
+
+                     fetch(`http://localhost:3000/action2`)
+                        .then(response => {
+                           return response.text();
+                        })
+                        .then(count => {
+                           const parsedCount = parseInt(count);
+                           den2.innerHTML = `${parsedCount} lần`;
+
+                        });
+
+
+
+
+
+                     webSocket.send("led|on");
+                     //   indexd2++;
+                     // den2.innerHTML= `${indexd2.toFixed(0)} lần`;
+                  }
+               }
+
+
+
+               );
+
+
+               let data = [];
+
+               const tableBody = document.getElementById('table-body');
+               const pageSelector = document.getElementById('page-selector');
+               const pageBackButton = document.getElementById('page-back');
+               const pageNextButton = document.getElementById('page-next');
+               const addButton = document.getElementById('add-button');
+
+               let currentPage = 1;
+               let rowsPerPage = 20;
+               //hiển thị theo trang và số dòng
+               function displayData(currentPage, rowsPerPage) {
+                  tableBody.innerHTML = '';
+                  const startIndex = (currentPage - 1) * rowsPerPage;
+                  const endIndex = startIndex + rowsPerPage;
+                  const dataToDisplay = data.slice(startIndex, endIndex);
+
+                  dataToDisplay.forEach(row => {
+                     const tr = document.createElement('tr');
+                     tr.innerHTML = `<td>${row.id}</td><td>${row.sensor}</td><td>${row.humidity}</td><td>${row.temperature}</td><td>${row.light}</td><td>${row.time}</td>`;
+                     tableBody.appendChild(tr);
+                  });
+               }
+               // cập nhật phân trang
+               function updatePagination() {
+                  const totalPages = Math.ceil(data.length / rowsPerPage);
+                  pageSelector.innerHTML = '';
+
+                  for (let i = 1; i <= totalPages; i++) {
+                     const option = document.createElement('option');
+                     option.value = i;
+                     option.text = `Trang ${i}`;
+                     pageSelector.appendChild(option);
+                  }
+
+                  pageSelector.value = currentPage;
+
+                  pageSelector.addEventListener('change', () => {
+                     currentPage = parseInt(pageSelector.value);
+                     displayData(currentPage, rowsPerPage);
+                  });
+               }
+
+               function addRow() {
+                  displayData(currentPage, rowsPerPage);
+                  updatePagination();
+               }
+
+               pageBackButton.addEventListener('click', () => {
+                  if (currentPage > 1) {
+                     currentPage--;
+                     pageSelector.value = currentPage;
+                     displayData(currentPage, rowsPerPage);
+                  }
+               });
+
+               pageNextButton.addEventListener('click', () => {
+                  if (currentPage < Math.ceil(data.length / rowsPerPage)) {
+                     currentPage++;
+                     pageSelector.value = currentPage;
+                     displayData(currentPage, rowsPerPage);
+                  }
+               });
+
+               displayData(currentPage, rowsPerPage);
+               updatePagination();
+               function clearTable() {
+                  const tableBody = document.getElementById('table-body');
+                  tableBody.innerHTML = ''; // Xóa nội dung bên trong tbody
+                  data = []; // Xóa dữ liệu trong mảng data (thay đổi tùy theo cách bạn lưu trữ dữ liệu)
+                  updatePagination(); // Cập nhật phân trang sau khi xóa dữ liệu
+               }
+
+
+            </script>
+</body>
+
+</html>

@@ -14,7 +14,7 @@
 
 #include "DHT.h"
 
-#define DHTPIN 21
+#define DHTPIN 23
 
 // Replace with your network credentials
 const char* ssid = "Duc Anh 2003";
@@ -147,11 +147,11 @@ void setup() {
 }
 
 void loop() {
-  if ((millis() - lastTime) > timerDelay) {
+  // if ((millis() - lastTime) > timerDelay) {
     String sensorReadings = getSensorReadings();
     Serial.print(sensorReadings);
     notifyClients(sensorReadings);
-    lastTime = millis();
-  }
+    // lastTime = millis();
+  // }
   ws.cleanupClients();
 }

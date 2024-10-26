@@ -2,16 +2,16 @@
 <input type="color" id="favcolor" value="#ff0000" />
 
 <script>
-  webSocketClient = new WebSocket("ws://localhost:3000");
+  webSocketClient = new WebSocket("ws://192.168.1.8:8080");
   webSocketClient.onopen = function (event) {
     console.log("WebSocket is open now.");
   };
   webSocketClient.onclo = function (event) {
     console.log("WebSocket is closed now.");
   };
-    webSocketClient.onmessage = function (event) {
-        console.log("Message received from server: ", event.data);
-    };
+  webSocketClient.onmessage = function (event) {
+    console.log("Message received from server: ", event.data);
+  };
   function hexTorgb(hex) {
     return [
       ("0x" + hex[1] + hex[2]) | 0,

@@ -14,7 +14,7 @@ const db = mysql2.createConnection({
 });
 
 const mqttClient = mqtt.connect({
-  host: "192.168.1.11",
+  host: "mqtt-dashboard.com",
   port: 1883,
   username: "ducanh",
   password: "ducanh172",
